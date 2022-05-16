@@ -92,7 +92,7 @@ public class Main {
             words_on_grid.add(m);
             words.remove(m);
 
-            m.vertical = true;
+            m.vertical = false;
             m.x = a_i - m_i;
             m.y = anchor.y;
 
@@ -106,7 +106,7 @@ public class Main {
             words_on_grid.add(m);
             words.remove(m);
 
-            m.vertical = false;
+            m.vertical = true;
             m.x = anchor.x;
             m.y = a_i - m_i;
         }
