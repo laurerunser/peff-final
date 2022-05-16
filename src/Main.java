@@ -44,8 +44,8 @@ public class Main {
 
     public static void algo() {
         // how big should it be ?
-        result = new char[nb_words*20][nb_words*20];
-        for (int i = 0; i<nb_words*20; i++) {
+        result = new char[nb_words*15][nb_words*15];
+        for (int i = 0; i<nb_words*15; i++) {
             Arrays.fill(result[i], '-');
         }
 
