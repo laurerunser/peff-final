@@ -4,6 +4,16 @@
 Oceane Guignard
 Laure Runser
 
+## Compilation
+`javac filename`
+File can be :
+- AddToTheEnd.java
+- AddToTheEnd_biggest_chain.java
+- Main.java
+- Main2.java
+
+The program looks at all the i.in (1<=i<=13) and trie the algo on all of them.
+It produces output files named `sortiei.in` (1<=i<=13)
 
 ## AddToTheEnd
 - trier les mots par le plus long
@@ -32,4 +42,37 @@ values that the first idea.
 -> this is normal : we are adding more words, but the grid is also getting substentially
 bigger every time
 
-##
+## Main : a more complex idea
+- the idea is to add the words wherever they fit, starting with the longest
+- we had a few problems :
+    - coordinates are SUPER hard : we got confused trying to place our words on the grid and
+    finding where the first letter is (when we only know which char is in common and where the
+    initial word is)
+    - we had trouble checking the space above and on the side of words (so that they don't touch
+    other words when they have nothing in common) -> again, coordinates are HARD!
+    - we also had heap space problems : we had to fiddle with the size of our grid so that the program didn't terminate
+    - we also tried sorting the words with the biggest value first (instead of the biggest length) but the
+    scores didn't change (though we thought they would)
+
+Results :
+1 -> -13
+2 -> -25
+3 -> 7
+4 -> -357
+5 -> -139
+6 -> wrong
+7 -> wrong
+8 -> 0
+9 -> -316
+10 -> wrong
+11 -> -652
+12 -> wrong
+13 -> 0
+Results are way better on some files than the AddToTheEnd : this is coherent because we are adding
+words in the middle of the grid, so there is less empty space + we are adding more words
+
+## Main2 : fixing the bugs of Main
+
+- looks like we were doing weird things when adding our words to the grid : some chars were added even though the
+entire word wasn't (and shouldn't be) added.
+- we didn't have enough time to fix it
