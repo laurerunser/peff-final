@@ -1,5 +1,6 @@
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.LineNumberInputStream;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -26,6 +27,12 @@ public class Main {
                 parse(sc);
                 algo();
                 sortie("sortie"+entre[i]);
+                /*for(int j=0;j<result.length;j++){
+                    for(int k=0;k<result[j].length;k++){
+                        System.out.print(result[j][k]);
+                    }
+                    System.out.println();
+                }*/
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -37,9 +44,9 @@ public class Main {
 
     public static void algo() {
         // how big should it be ?
-        result = new char[nb_words*100][nb_words*100];
-        for (int i = 0; i<nb_words*100; i++) {
-            Arrays.fill(result[i], ' ');
+        result = new char[nb_words*20][nb_words*20];
+        for (int i = 0; i<nb_words*20; i++) {
+            Arrays.fill(result[i], '-');
         }
 
 
@@ -61,14 +68,17 @@ public class Main {
             for(int k = 0; k<words.size(); k++) {
                 Mot m = words.get(k);
                 Mot last_word = words_on_grid.get(words_on_grid.size()-1);
-
-                for (int i = 0; i<m.word.length(); i++) {
+                boolean ok=true;
+                for (int i = 0; i<m.word.length()&&ok; i++) {
                     for (int j = 0; j<last_word.word.length(); j++) {
                         if (m.word.charAt(i) == last_word.word.charAt(j)) {
                             // letter in common, see if word fits
-                            boolean res = try_fit_word(m, last_word, i, j);
+                            boolean res = try_fit2(m, last_word, i/* position dans mot a add */, j/* position dans last_word*/);
                             if (res) {
-                                change = true;
+                                change = true; // si ya changement nouveau tour de boucle pour tester avec le dernier ajouté
+                                ok=false;
+                                break;
+                                
                             }
                         }
                     }
@@ -77,7 +87,56 @@ public class Main {
             }
         }
     }
+    public static boolean try_fit2(Mot add, Mot last, int chari, int charj){
+        add.vertical=!last.vertical;
+        if(last.vertical){
+            //last.x;//colone de depart du dernier mot
+            //last.y;//ligne de depart du dernier mot
+            int xcommun=last.x;
+            int ycommun=last.y+charj;
+            add.x=xcommun-chari;
+            add.y=ycommun;
+            if(add.x<0 || add.y<0){
+                return false;
+            }
+            for(int i=0;i<add.word.length();i++){
+                if(i!=chari){
+                    if(result[add.y][add.x+i]=='-'&& (add.y-1<0|| result[add.y-1][add.x+i]=='-')&& result[add.y+1][add.x+i]=='-'){
+                        result[add.y][add.x+i]=add.word.charAt(i);
+                    }else{
+                        return false;
 
+                    }
+                }
+            }
+            words_on_grid.add(add);
+            words.remove(add);
+
+            return true;
+        }else{
+            //last.x;//colone de depart du dernier mot
+            //last.y;//ligne de depart du dernier mot
+            int xcommun=last.x+charj;
+            int ycommun=last.y;
+            add.x=xcommun;
+            add.y=ycommun-chari;
+            if(add.x<0 || add.y<0){
+                return false;
+            }
+            for(int i=0;i<add.word.length();i++){
+                if(i!=chari){
+                    if(result[add.y+i][add.x]=='-' && (add.x-1<0||result[add.y+i][add.x-1]=='-') && result[add.y+i][add.x+1]=='-'){
+                        result[add.y+i][add.x]=add.word.charAt(i);
+                    }else{
+                        return false;
+                    }
+                }
+            }
+            words_on_grid.add(add);
+            words.remove(add);
+            return true;
+        }
+    }
     public static boolean try_fit_word(Mot m, Mot anchor, int m_i, int a_i) {
         if (a_i - m_i < 0) {
             return false; // out of bounds of the grid
