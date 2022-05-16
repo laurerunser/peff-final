@@ -93,8 +93,8 @@ public class Main {
             words.remove(m);
 
             m.vertical = false;
-            m.x = a_i - m_i;
-            m.y = anchor.y;
+            m.x = anchor.x + m_i;
+            m.y = anchor.y - m_i;
             System.out.println("x : " + m.x + " y : " + m.y);
 
             for (int i = 0; i<m.word.length(); i++) {
@@ -112,8 +112,8 @@ public class Main {
             words.remove(m);
 
             m.vertical = true;
-            m.x = anchor.x;
-            m.y = a_i - m_i;
+            m.x = anchor.x - m_i;
+            m.y = anchor.y + m_i;
 
             System.out.println("x : " + m.x + " y : " + m.y);
 
