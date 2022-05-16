@@ -25,3 +25,11 @@ Amelioration :
 ## Add to the end, but choose the one with the biggest chain
 - same idea than the first one, but first check all the words to count how
 many you can link after each one
+
+Results :
+- just as bad ? I didn't check in details but none were above 0, and it looked like the same
+values that the first idea.
+-> this is normal : we are adding more words, but the grid is also getting substentially
+bigger every time
+
+##
