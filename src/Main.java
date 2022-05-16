@@ -58,7 +58,8 @@ public class Main {
         boolean change = true;
         while(change) {
             change = false;
-            for(Mot m : words) {
+            for(int k = 0; k<words.size(); k++) {
+                Mot m = words.get(k);
                 Mot last_word = words_on_grid.get(words_on_grid.size()-1);
 
                 for (int i = 0; i<m.word.length(); i++) {
