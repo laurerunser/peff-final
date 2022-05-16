@@ -1,3 +1,5 @@
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -15,6 +17,20 @@ public class Main {
     static String path="src/input/";
 
     public static void main(String[] args) {
+        try{
+            for(int i=0;i<entre.length;i++){
+                words=new ArrayList<>();
+                words_on_grid = new ArrayList<>();
+                InputStream ins = new FileInputStream(path+entre[i]);
+                Scanner sc=new Scanner(ins);
+                parse(sc);
+                algo();
+                sortie("sortie"+entre[i]);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
         
     }
 
@@ -46,7 +62,7 @@ public class Main {
                 Mot last_word = words_on_grid.get(words_on_grid.size()-1);
 
                 for (int i = 0; i<m.word.length(); i++) {
-                    for (int j = 0; i<last_word.word.length(); j++) {
+                    for (int j = 0; j<last_word.word.length(); j++) {
                         if (m.word.charAt(i) == last_word.word.charAt(j)) {
                             // letter in common, see if word fits
                             boolean res = try_fit_word(m, last_word, i, j);
