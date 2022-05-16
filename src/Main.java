@@ -95,6 +95,7 @@ public class Main {
             m.vertical = false;
             m.x = a_i - m_i;
             m.y = anchor.y;
+            System.out.println("x : " + m.x + " y : " + m.y);
 
             for (int i = 0; i<m.word.length(); i++) {
                 result[m.x + i][m.y] = m.word.charAt(i);
@@ -113,6 +114,9 @@ public class Main {
             m.vertical = true;
             m.x = anchor.x;
             m.y = a_i - m_i;
+
+            System.out.println("x : " + m.x + " y : " + m.y);
+
 
             for (int i = 0; i<m.word.length(); i++) {
                 result[m.x][m.y + i] = m.word.charAt(i);
