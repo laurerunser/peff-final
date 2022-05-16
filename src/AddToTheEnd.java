@@ -31,7 +31,11 @@ public class AddToTheEnd {
 
 
     public static void algo() {
-        words.sort((o1, o2) -> o1.word.length() > o2.word.length() ? 1 : 0);
+        // sort by longest word
+        //words.sort((o1, o2) -> o1.word.length() > o2.word.length() ? 1 : 0);
+
+        // sort by biggest value
+        words.sort((o1, o2) -> o1.val > o2.val ? 1 : 0);
 
         // add first word
         first_word = words.get(0);

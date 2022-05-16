@@ -19,3 +19,9 @@ Resultats :
 - tous les fichiers sont traites rapidement
 - tous les scores sont soit 0 (pour les 1, 3, 8, 13), soit negatifs (les autres)
 
+Amelioration :
+- tried sorting by the biggest value, but that didn't help
+
+## Add to the end, but choose the one with the biggest chain
+- same idea than the first one, but first check all the words to count how
+many you can link after each one
