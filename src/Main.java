@@ -138,12 +138,12 @@ public class Main {
         }
     }
     public static boolean try_fit_word(Mot m, Mot anchor, int m_i, int a_i) {
-        if (a_i - m_i < 0) {
-            return false; // out of bounds of the grid
-        }
         if (anchor.vertical) {
+            if (anchor.x - a_i < 0) {
+                return false;
+            }
             for (int i = 0; i<a_i; i++) {
-                if (result[anchor.x][i] != ' ') { // not empty -> can't put word here
+                if (result[anchor.x - i][anchor.y] != ' ') { // not empty -> can't put word here
                     return false;
                 }
             }
@@ -152,8 +152,8 @@ public class Main {
             words.remove(m);
 
             m.vertical = false;
-            m.x = anchor.x + m_i;
-            m.y = anchor.y - m_i;
+            m.x = anchor.x - m_i;
+            m.y = anchor.y + a_i;
             System.out.println("x : " + m.x + " y : " + m.y);
 
             for (int i = 0; i<m.word.length(); i++) {
@@ -161,8 +161,11 @@ public class Main {
             }
 
         } else {
+            if (anchor.y - m_i < 0) {
+                return false;
+            }
             for (int i = 0; i<a_i; i++) {
-                if (result[i][anchor.y] != ' ') { // not empty -> can't put word here
+                if (result[anchor.x][anchor.y - m_i] != ' ') { // not empty -> can't put word here
                     return false;
                 }
             }
@@ -171,9 +174,8 @@ public class Main {
             words.remove(m);
 
             m.vertical = true;
-            m.x = anchor.x - m_i;
-            m.y = anchor.y + m_i;
-
+            m.x = anchor.x + a_i;
+            m.y = anchor.y - m_i;
             System.out.println("x : " + m.x + " y : " + m.y);
 
 
