@@ -4,12 +4,11 @@ public class Mot {
     int y;
     int val;
     boolean vertical;//true pour vertical
-    boolean grid=false;
-    String mot;
-    public Mot(int i, int val,String mot){
+    String word;
+    public Mot(int i, int val, String word){
         this.i=i;
         this.val=val;
-        this.mot=mot;
+        this.word = word;
     }
     public String toString(){
         String ret="";
