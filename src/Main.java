@@ -51,7 +51,6 @@ public class Main {
                             // letter in common, see if word fits
                             boolean res = try_fit_word(m, last_word, i, j);
                             if (res) {
-                                // todo ajouter mot
                                 change = true;
                             }
                         }
@@ -73,12 +72,26 @@ public class Main {
                 }
             }
 
+            words_on_grid.add(m);
+            words.remove(m);
+
+            m.vertical = true;
+            m.x = a_i - m_i;
+            m.y = anchor.y;
+
         } else {
             for (int i = 0; i<a_i; i++) {
                 if (result[i][anchor.y] != ' ') { // not empty -> can't put word here
                     return false;
                 }
             }
+
+            words_on_grid.add(m);
+            words.remove(m);
+
+            m.vertical = false;
+            m.x = anchor.x;
+            m.y = a_i - m_i;
         }
         return true;
     }
