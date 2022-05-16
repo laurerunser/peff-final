@@ -5,9 +5,11 @@ public class Mot {
     int val;
     boolean vertical;//true pour vertical
     boolean grid;
-    public Mot(int i, int val){
+    String mot;
+    public Mot(int i, int val,String mot){
         this.i=i;
         this.val=val;
+        this.mot=mot;
     }
     
 }
