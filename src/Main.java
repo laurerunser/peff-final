@@ -96,6 +96,10 @@ public class Main {
             m.x = a_i - m_i;
             m.y = anchor.y;
 
+            for (int i = 0; i<m.word.length(); i++) {
+                result[m.x + i][m.y] = m.word.charAt(i);
+            }
+
         } else {
             for (int i = 0; i<a_i; i++) {
                 if (result[i][anchor.y] != ' ') { // not empty -> can't put word here
@@ -109,6 +113,10 @@ public class Main {
             m.vertical = true;
             m.x = anchor.x;
             m.y = a_i - m_i;
+
+            for (int i = 0; i<m.word.length(); i++) {
+                result[m.x][m.y + i] = m.word.charAt(i);
+            }
         }
         return true;
     }
