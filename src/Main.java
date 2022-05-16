@@ -3,11 +3,9 @@ import java.util.Scanner;
 
 public class Main {
     static int nbmots;
-    static String[] mots;
-    static int[]vals;
     static char[][] result;
     static int nbmotresult;
-    static ArrayList<Mots> resultM;
+    static ArrayList<Mot> resultM;
     public static void main(String[] args) {
         
     }
@@ -22,5 +20,6 @@ public class Main {
 
         }
     }
+    
 
 }
